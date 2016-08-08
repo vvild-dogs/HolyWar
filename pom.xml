@@ -19,6 +19,14 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -31,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <artifactId>slf4j-simple</artifactId>
             <version>1.7.21</version>
         </dependency>
         <dependency>
@@ -53,6 +61,28 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
+        </dependency>
+
+        <!-- Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>4.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>4.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>4.1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>4.1.1.RELEASE</version>
         </dependency>
 
         <!-- Database -->

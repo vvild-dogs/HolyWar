@@ -20,14 +20,14 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
-
+/*
 @Configuration
 @EnableJpaRepositories("com.holy.repository")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
-@ComponentScan("com.holy")
+@ComponentScan("com.holy")*/
 public class DataBaseConfig {
-
+/*
     @Resource
     private Environment env;
 
@@ -80,7 +80,7 @@ public class DataBaseConfig {
 
         return basicDataSource;
     }
-*/
+*//*
     @Bean
     public PlatformTransactionManager transactionManager() throws URISyntaxException {
         JpaTransactionManager manager = new JpaTransactionManager();
@@ -89,7 +89,7 @@ public class DataBaseConfig {
         return manager;
     }
 
-    public Properties getHibernateProperties() {
+    private Properties getHibernateProperties() {
         try {
             Properties properties = new Properties();
             InputStream is = getClass().getClassLoader().getResourceAsStream("hibernate.properties");
@@ -100,5 +100,5 @@ public class DataBaseConfig {
             throw new IllegalArgumentException("Can't find 'hibernate.properties' in classpath!", e);
         }
     }
-
+*/
 }

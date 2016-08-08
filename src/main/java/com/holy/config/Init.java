@@ -13,9 +13,12 @@ public class Init implements WebApplicationInitializer {
 
     private final static String DISPATCHER = "dispatcher";
 
+    @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(WebConfig.class);
+        ctx.register(SecurityConfig.class);
+        ctx.register(DataBaseConfig.class);
         servletContext.addListener(new ContextLoaderListener(ctx));
 
         ServletRegistration.Dynamic servlet = servletContext.addServlet(DISPATCHER, new DispatcherServlet(ctx));

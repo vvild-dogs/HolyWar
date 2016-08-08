@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+/*  ===== Выдвигающаяся left панель
+*   Базовый контейнер выдвижной панели */
+.top-panel {
+    background: #39464e;
+    position: absolute;
+    top: 0;
+    margin-top: 40px;
+    left: -200px;
+    width: 200px;
+    height: auto;
+    padding: 0;
+    transition: left 400ms cubic-bezier(0.17,0.04,0.03,0.94);
+    z-index:1
+}
+/* Переключатель панели */
+label.btn {
+    display: block;
+    position: absolute;
+    top: 0;
+    background: #27ae60;
+    width: 40px;
+    height: 40px;
+    padding: 11px 5px;
+    color: #FFF;\
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    transition: all 400ms cubic-bezier(0.17,0.04,0.03,0.94);
+    z-index: 9999;
+}
+/* Переключатель при наведении */
+label.btn:hover {
+    background: #333
+}
+/* Стрелка переключателя вниз */
+label.btn:after {
+    content: '\f0c9';
+    font: normal 18px/1 FontAwesome;
+    text-decoration: inherit
+}
+/* Активация панели */
+.open:checked ~ .top-panel {
+    left: 0;
+}
+/* Смещение контейнера контента страницы */
+.open:checked ~ .content {
+    margin-left: 200px;
+}
+/* Стрелка переключателя вверх*/
+.open:checked + label.btn:after {
+    content: '\f011';
+    font: normal 18px/1 FontAwesome
+}
+/* Контейнер контента */
+.content {
+    transition: all 400ms cubic-bezier(0.17,0.04,0.03,0.94);
+}
+/* Цвет переключателя при клике */
+.open:checked ~ label.btn {
+    left: 0px;
+    background: #27ae60
+}
+.open:checked ~ label.btn:hover {
+    background: #333
+}
