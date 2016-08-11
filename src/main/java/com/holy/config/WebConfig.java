@@ -1,6 +1,6 @@
 package com.holy.config;
 
-import com.holy.service.UserDetailsServiceImpl;
+import com.holy.service.AuthorizationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +32,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public UserDetailsService getUserDetailsService(){
-        return new UserDetailsServiceImpl();
+        return new AuthorizationService();
     }
 }

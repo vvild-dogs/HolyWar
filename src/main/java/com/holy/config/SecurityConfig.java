@@ -1,6 +1,6 @@
 package com.holy.config;
 
-import com.holy.service.UserDetailsServiceImpl;
+import com.holy.service.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +17,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private AuthorizationService authorizationService;
 
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(userDetailsService)
+            .userDetailsService(authorizationService)
             .passwordEncoder(getShaPasswordEncoder());
     }
 
@@ -31,8 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
             .disable()
             .authorizeRequests()
-            .antMatchers("/resources/**", "/**").permitAll()
-            .anyRequest().permitAll()
+                .antMatchers("/resources/**", "/**").permitAll()
             .and();
 
         http.formLogin()
@@ -51,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    // Указываем Spring контейнеру, что надо инициализировать ShaPasswordEncoder
     @Bean
     public ShaPasswordEncoder getShaPasswordEncoder(){
         return new ShaPasswordEncoder();

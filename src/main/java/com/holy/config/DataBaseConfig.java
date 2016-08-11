@@ -17,17 +17,16 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
-/*
+
 @Configuration
 @EnableJpaRepositories("com.holy.repository")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
-@ComponentScan("com.holy")*/
+@ComponentScan("com.holy")
 public class DataBaseConfig {
-/*
+
     @Resource
     private Environment env;
 
@@ -80,7 +79,7 @@ public class DataBaseConfig {
 
         return basicDataSource;
     }
-*//*
+*/
     @Bean
     public PlatformTransactionManager transactionManager() throws URISyntaxException {
         JpaTransactionManager manager = new JpaTransactionManager();
@@ -100,5 +99,4 @@ public class DataBaseConfig {
             throw new IllegalArgumentException("Can't find 'hibernate.properties' in classpath!", e);
         }
     }
-*/
 }
