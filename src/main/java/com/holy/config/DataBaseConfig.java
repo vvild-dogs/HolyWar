@@ -33,12 +33,10 @@ public class DataBaseConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-
         em.setDataSource(dataSource());
         em.setPackagesToScan(env.getRequiredProperty("db.entity.package"));
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(getHibernateProperties());
-
         return em;
     }
 
@@ -51,7 +49,6 @@ public class DataBaseConfig {
         ds.setDriverClassName(env.getRequiredProperty("db.driver"));
         ds.setUsername(env.getRequiredProperty("db.username"));
         ds.setPassword(env.getRequiredProperty("db.password"));
-
         ds.setInitialSize(Integer.valueOf(env.getRequiredProperty("db.initialSize")));
         ds.setMinIdle(Integer.valueOf(env.getRequiredProperty("db.minIdle")));
         ds.setMaxIdle(Integer.valueOf(env.getRequiredProperty("db.maxIdle")));
@@ -99,4 +96,5 @@ public class DataBaseConfig {
             throw new IllegalArgumentException("Can't find 'hibernate.properties' in classpath!", e);
         }
     }
+
 }

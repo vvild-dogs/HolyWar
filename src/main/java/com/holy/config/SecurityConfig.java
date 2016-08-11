@@ -28,10 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
+        http
+            .csrf()
             .disable()
             .authorizeRequests()
-                .antMatchers("/resources/**", "/**").permitAll()
+                .antMatchers("/resources/**", "/**", "/login").permitAll()
+                .anyRequest().permitAll()
             .and();
 
         http.formLogin()
@@ -50,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    // Указываем Spring контейнеру, что надо инициализировать ShaPasswordEncoder
     @Bean
     public ShaPasswordEncoder getShaPasswordEncoder(){
         return new ShaPasswordEncoder();

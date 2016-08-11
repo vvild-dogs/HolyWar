@@ -1,26 +1,25 @@
 package com.holy.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Id;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Users")
-public class UsersTest {
+public class UsersEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
-    @Column(name = "userName", nullable = false, length = 30)
+    @Column(name = "userName", nullable = false, length = 25)
     private String userName;
     @Column(name = "password", nullable = false, length = 1024)
     private String password;
     @Column(name = "role", nullable = false, length = 25)
     private String role;
 
-    public UsersTest(){
+    public UsersEntity(){
 
     }
 

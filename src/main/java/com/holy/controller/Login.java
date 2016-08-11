@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class Login {
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView signIn(){
+    public ModelAndView login(){
         return new ModelAndView("sign");
     }
 }
