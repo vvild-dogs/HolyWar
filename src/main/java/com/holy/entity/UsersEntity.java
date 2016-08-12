@@ -1,7 +1,5 @@
 package com.holy.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +7,7 @@ import javax.persistence.*;
 public class UsersEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "userName", nullable = false, length = 25)
     private String userName;

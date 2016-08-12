@@ -19,6 +19,7 @@ public class Init implements WebApplicationInitializer {
         ctx.register(WebConfig.class);
         ctx.register(SecurityConfig.class);
         ctx.register(DataBaseConfig.class);
+        ctx.register(SecurityWebAppInitializer.class);
         servletContext.addListener(new ContextLoaderListener(ctx));
 
         ServletRegistration.Dynamic servlet = servletContext.addServlet(DISPATCHER, new DispatcherServlet(ctx));

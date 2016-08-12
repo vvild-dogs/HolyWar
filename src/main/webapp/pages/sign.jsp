@@ -16,9 +16,9 @@
     <!--Icon project-->
     <link rel="icon" href="<c:url value="https://cdn4.iconfinder.com/data/icons/adiante-apps-app-templates-incos-in-grey/512/app_type_ngo_512px_GREY.png"/>">
     <!--File CSS-->
-    <link href="<c:url value="/pages/css/menu.css"/>" rel="stylesheet"/>
-    <link href="<c:url value="/pages/css/grid.css"/>" rel="stylesheet"/>
-    <link href="<c:url value="/pages/css/main.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/menu.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/grid.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/resources/css/main.css"/>" rel="stylesheet"/>
     <!--bootstrap icon-->
     <link href="<c:url value="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>" rel="stylesheet"/>
     <link href="<c:url value="https://fonts.googleapis.com/css?family=Lobster"/>" rel='stylesheet' type='text/css'/>
@@ -37,13 +37,19 @@
 </div>
 <div class="content">
     <div class="sig clock">
-        <h1>Вход</h1>
-        <c:url value="/j_spring_security_check" var="loginUrl" />
-        <form action="${loginUrl}" method="post">
-            <input type="text" class="form-control" name="j_username" placeholder="Email address" required autofocus>
-            <input type="password" class="form-control" name="j_password" placeholder="Password">
-            <button class="reglogbtn" type="submit">Войти</button>
-        </form>
+        <sec:authorize access="!isAuthenticated()">
+            <h1>Вход</h1>
+            <c:url value="/j_spring_security_check" var="loginUrl" />
+            <form action="${loginUrl}" method="post">
+                <input type="text" class="form-control" name="j_username" placeholder="Email address" required autofocus>
+                <input type="password" class="form-control" name="j_password" placeholder="Password">
+                <button class="reglogbtn" type="submit">Войти</button>
+            </form>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+            <p>Логин: <sec:authentication property="principal.username" /></p><br>
+            <a class="reglogbtn" href="/logout" role="button">Выйти</a>
+        </sec:authorize>
     </div>
 </div>
 </body>

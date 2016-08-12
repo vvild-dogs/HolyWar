@@ -18,43 +18,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthorizationService authorizationService;
+    @Autowired
+    private WebConfig webConfig;
 
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .userDetailsService(authorizationService)
-            .passwordEncoder(getShaPasswordEncoder());
+            .passwordEncoder(webConfig.getShaPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .csrf()
-            .disable()
+            .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/resources/**", "/**", "/login").permitAll()
-                .anyRequest().permitAll()
-            .and();
-
-        http.formLogin()
-            .loginPage("/login")
-            .loginProcessingUrl("/j_spring_security_check")
-            .failureUrl("/login?error")
-            .usernameParameter("j_username")
-            .passwordParameter("j_password")
-            .permitAll();
-
-        http.logout()
-            .permitAll()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/login?logout")
-            .invalidateHttpSession(true);
-
-    }
-
-    // Указываем Spring контейнеру, что надо инициализировать ShaPasswordEncoder
-    @Bean
-    public ShaPasswordEncoder getShaPasswordEncoder(){
-        return new ShaPasswordEncoder();
+                .antMatchers("/resources/**", "/register").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/j_spring_security_check")
+                .failureUrl("/login?error")
+                .usernameParameter("j_username")
+                .passwordParameter("j_password")
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true);
     }
 }
